@@ -1,0 +1,98 @@
+management: 
+  endpoint: 
+    metrics: 
+      enabled: true
+    prometheus: 
+      enabled: true
+  endpoints: 
+    web: 
+      exposure: 
+        include: "*"
+  metrics: 
+    export: 
+      prometheus: 
+        enabled: true
+spring: 
+  application: 
+    name: earlycloseingoftermdeposit
+  cloud: 
+    config: 
+      failFast: false
+      retry: 
+        maxAttempts: 20
+      uri: ${CONFIG_SERVER_URI}
+  profiles: 
+    active: ${PROFILE:dev}
+  sleuth: 
+    sampler: 
+      percentage: 1
+  api: 
+    contacthandler: 
+      context-path: /ContactHandler/Initiate
+      hosturl: /contacthandler
+      jolt-filename: contacthandler838384-jolt.json
+    corporatecurrentaccount: 
+      context-path: /CorporateCurrentAccount/Initiate
+      hosturl: /corporatecurrentaccount
+      jolt-filename: corporatecurrentaccount283715-jolt.json
+    corporatetreasury: 
+      context-path: /CorporateTreasury/{corporatetreasuryId}/Retrieve
+      hosturl: /corporatetreasury
+      jolt-filename: corporatetreasury614749-jolt.json
+    correspondence: 
+      context-path: /Correspondence/Initiate
+      hosturl: /correspondence
+      jolt-filename: correspondence871617-jolt.json
+    creditfacility: 
+      context-path: /CreditFacility/Initiate
+      hosturl: /creditfacility
+      jolt-filename: creditfacility661090-jolt.json
+    customerproductandservice: 
+      context-path: /CustomerProductsandServices/Register
+      hosturl: /customerproductandservice
+      jolt-filename: customerproductandservice169912-jolt.json
+    customerworkbench: 
+      context-path: /CustomerWorkbench/Initiate
+      hosturl: /customerworkbench
+      jolt-filename: customerworkbench262869-jolt.json
+    financialaccounting: 
+      context-path: /FinancialAccounting/Initiate
+      hosturl: /financialaccounting
+      jolt-filename: financialaccounting795651-jolt.json
+    partylifecycle: 
+      context-path: /PartyLifecycleManagement/Initiate
+      hosturl: /partylifecycle
+      jolt-filename: partylifecycle640836-jolt.json
+    paymentorder: 
+      context-path: /PaymentOrder/Initiate
+      hosturl: /paymentorder
+      jolt-filename: paymentorder601975-jolt.json
+    positionkeeping: 
+      context-path: /PositionKeeping/Initiate
+      hosturl: /positionkeeping
+      jolt-filename: positionkeeping676485-jolt.json
+    serviceorder: 
+      context-path: /ServicingOrder/Initiate
+      hosturl: /serviceorder
+      jolt-filename: serviceorder793069-jolt.json
+    sessiondialogue: 
+      context-path: /SessionDialogue/Initiate
+      hosturl: /sessiondialogue
+      jolt-filename: sessiondialogue371795-jolt.json
+    termdeposit: 
+      context-path: /TermDeposit/Initiate
+      hosturl: /termdeposit
+      jolt-filename: termdeposit481066-jolt.json
+    traderpositionmanagement: 
+      context-path: /TraderPositionOperations/{traderpositionoperationsId}/Control
+      hosturl: /traderposition
+      jolt-filename: traderpositionmanagement892231-jolt.json
+    transactionauthorisation: 
+      context-path: /TransactionAuthorization/Evaluate
+      hosturl: /transactionauthorisation
+      jolt-filename: transactionauthorisation474101-jolt.json
+  datasource: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${mysql_pwd}
+    url: jdbc:mysql://${mysql_url}:3306/camunda
+    username: ${mysql_user}
